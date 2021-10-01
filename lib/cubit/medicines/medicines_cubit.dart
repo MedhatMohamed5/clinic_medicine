@@ -158,6 +158,8 @@ class MedicinesCubit extends Cubit<MedicinesStates> {
         await FirebaseFirestore.instance
             .collection("medicines")
             .add(_medicineModel.toJson());
+
+        await getMedicines();
       }
 
       medicineImage = null;

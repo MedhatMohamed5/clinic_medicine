@@ -1,11 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CustomerModel {
   late String name;
-  String? uid;
-  String? email;
+  late String? uid;
+  late String? email;
   late String phone;
-  double? paidAmount;
-  double? purchasedAmount;
-  double? balanceAmount;
+  late double? paidAmount;
+  late double? purchasedAmount;
+  late double? balanceAmount;
+  late DateTime createdOn;
+  late String createdByName;
+  late String createdById;
+  late DateTime modifiedOn;
+  late String modifiedByName;
+  late String modifiedById;
 
   CustomerModel({
     this.uid,
@@ -15,6 +23,12 @@ class CustomerModel {
     this.paidAmount,
     this.purchasedAmount,
     this.balanceAmount,
+    required this.createdOn,
+    required this.createdByName,
+    required this.createdById,
+    required this.modifiedOn,
+    required this.modifiedByName,
+    required this.modifiedById,
   });
 
   void copyFrom(CustomerModel _customerModel) {
@@ -25,6 +39,12 @@ class CustomerModel {
     this.paidAmount = _customerModel.paidAmount;
     this.purchasedAmount = _customerModel.purchasedAmount;
     this.balanceAmount = _customerModel.balanceAmount;
+    this.createdOn = _customerModel.createdOn;
+    this.createdByName = _customerModel.createdByName;
+    this.createdById = _customerModel.createdById;
+    this.modifiedOn = _customerModel.modifiedOn;
+    this.modifiedByName = _customerModel.modifiedByName;
+    this.modifiedById = _customerModel.modifiedById;
   }
 
   CustomerModel.fromJson(String uid, Map<String, dynamic>? json) {
@@ -32,9 +52,15 @@ class CustomerModel {
     this.name = json?['name'] ?? '';
     this.phone = json?['phone'] ?? '';
     this.email = json?['email'] ?? '';
-    this.paidAmount = json?['paidAmount'] ?? 0;
-    this.purchasedAmount = json?['balanceAmount'] ?? 0;
-    this.balanceAmount = json?['balanceAmount'] ?? 0;
+    this.paidAmount = json?['paidAmount'] ?? 0.0;
+    this.purchasedAmount = json?['balanceAmount'] ?? 0.0;
+    this.balanceAmount = json?['balanceAmount'] ?? 0.0;
+    this.createdOn = (json?['createdOn'] as Timestamp).toDate();
+    this.createdByName = json?['createdByName'] ?? '';
+    this.createdById = json?['createdById'] ?? '';
+    this.modifiedOn = (json?['modifiedOn'] as Timestamp).toDate();
+    this.modifiedByName = json?['modifiedByName'] ?? '';
+    this.modifiedById = json?['modifiedById'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +71,12 @@ class CustomerModel {
     data['paidAmount'] = this.paidAmount;
     data['balanceAmount'] = this.balanceAmount;
     data['purchasedAmount'] = this.purchasedAmount;
+    data['createdOn'] = this.createdOn;
+    data['createdByName'] = this.createdByName;
+    data['createdById'] = this.createdById;
+    data['modifiedOn'] = this.modifiedOn;
+    data['modifiedByName'] = this.modifiedByName;
+    data['modifiedById'] = this.modifiedById;
     return data;
   }
 }

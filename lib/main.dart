@@ -3,6 +3,7 @@ import 'package:clinic_medicines/common/home_layout.dart';
 import 'package:clinic_medicines/common/network/shared_pref_helper.dart';
 // import 'package:clinic_medicines/common/splash_screen.dart';
 import 'package:clinic_medicines/common/styles/themes.dart';
+import 'package:clinic_medicines/cubit/customer/customer_cubit.dart';
 import 'package:clinic_medicines/cubit/drawer/drawer_cubit.dart';
 import 'package:clinic_medicines/cubit/general/app_cubit.dart';
 import 'package:clinic_medicines/cubit/home/home_cubit.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MedicinesCubit()..getMedicines(),
+        ),
+        BlocProvider(
+          create: (context) => CustomerCubit()..getCustomers(),
         ),
       ],
       child: MaterialApp(

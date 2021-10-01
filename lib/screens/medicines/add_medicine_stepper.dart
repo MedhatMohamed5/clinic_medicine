@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:clinic_medicines/common/components/loading.dart';
 import 'package:clinic_medicines/common/components/textInput.dart';
 import 'package:clinic_medicines/common/constants.dart';
 import 'package:clinic_medicines/common/styles/colors.dart';
@@ -78,7 +77,6 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
           Fluttertoast.showToast(
             msg: 'Medicine Added Successfully',
             backgroundColor: Colors.green,
-            gravity: ToastGravity.CENTER,
           );
           // MedicinesCubit.get(context).getMedicines();
           Navigator.of(context).pop();
@@ -114,7 +112,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
             ),
             body: (state is! LoadingMedicinesState)
                 ? _buildForm(context, medicineCubit)
-                : _loading(),
+                : loading(),
           ),
         );
       },
@@ -451,14 +449,6 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _loading() {
-    return Center(
-      child: Platform.isIOS
-          ? CupertinoActivityIndicator()
-          : CircularProgressIndicator(),
     );
   }
 

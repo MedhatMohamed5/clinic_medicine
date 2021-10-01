@@ -21,7 +21,11 @@ class MedicinesScreen extends StatelessWidget {
         final medicineCubit = MedicinesCubit.get(context);
 
         return (state is! LoadingMedicinesState)
-            ? _medicinesList(medicineCubit)
+            ? medicineCubit.medicines.length > 0
+                ? _medicinesList(medicineCubit)
+                : Center(
+                    child: Text('There is no items'),
+                  )
             : loading();
       },
     );
@@ -31,7 +35,7 @@ class MedicinesScreen extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: medicineCubit.getMedicines,
       child: ListView.separated(
-        physics: BouncingScrollPhysics(),
+        // physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             Navigator.of(context).push(
