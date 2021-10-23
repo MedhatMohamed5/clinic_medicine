@@ -52,9 +52,10 @@ class CustomerModel {
     this.name = json?['name'] ?? '';
     this.phone = json?['phone'] ?? '';
     this.email = json?['email'] ?? '';
-    this.paidAmount = json?['paidAmount'] ?? 0.0;
-    this.purchasedAmount = json?['balanceAmount'] ?? 0.0;
-    this.balanceAmount = json?['balanceAmount'] ?? 0.0;
+    this.paidAmount = double.tryParse('${json?['paidAmount']}') ?? 0.0;
+    this.purchasedAmount =
+        double.tryParse('${json?['purchasedAmount']}') ?? 0.0;
+    this.balanceAmount = double.tryParse('${json?['balanceAmount']}') ?? 0.0;
     this.createdOn = (json?['createdOn'] as Timestamp).toDate();
     this.createdByName = json?['createdByName'] ?? '';
     this.createdById = json?['createdById'] ?? '';
@@ -78,5 +79,9 @@ class CustomerModel {
     data['modifiedByName'] = this.modifiedByName;
     data['modifiedById'] = this.modifiedById;
     return data;
+  }
+
+  bool isEqual(CustomerModel? t) {
+    return this.uid == t?.uid;
   }
 }

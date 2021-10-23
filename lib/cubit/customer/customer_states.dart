@@ -31,3 +31,5 @@ class CustomersGetErrorState extends CustomerErrorState {
 
   CustomersGetErrorState(this.error) : super(error);
 }
+
+class UpdateCustomerAfterSellState extends CustomerSuccessState {}

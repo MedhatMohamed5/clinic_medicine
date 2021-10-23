@@ -55,6 +55,7 @@ class CustomersScreen extends StatelessWidget {
   Widget _customerItemView(
       BuildContext context, CustomerCubit customerCubit, int index) {
     final currentCustomer = customerCubit.customers[index];
+    final orderCount = customerCubit.numberOfOrders[currentCustomer.uid];
     return Padding(
       key: ValueKey(currentCustomer.uid),
       padding: const EdgeInsets.all(8.0),
@@ -108,8 +109,7 @@ class CustomersScreen extends StatelessWidget {
                           children: [
                             TextSpan(text: 'Number of Orders: '),
                             TextSpan(
-                              text: '0.0',
-                              //'${currentItem.consumerPrice.toStringAsFixed(2)}',
+                              text: '$orderCount',
                             ),
                           ],
                         ),

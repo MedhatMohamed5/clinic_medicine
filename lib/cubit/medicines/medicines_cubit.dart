@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:clinic_medicines/cubit/general/app_cubit.dart';
 import 'package:clinic_medicines/cubit/medicines/medicines_states.dart';
 import 'package:clinic_medicines/models/medicine_model.dart';
+import 'package:clinic_medicines/models/order_item_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -173,6 +175,46 @@ class MedicinesCubit extends Cubit<MedicinesStates> {
     }
   }
 
+  Future<void> updateMedicineAfterSellMedicine(
+    BuildContext context,
+    OrderItemModel orderItemModel,
+  ) async {
+    try {
+      final existedMedicine = await FirebaseFirestore.instance
+          .collection("medicines")
+          .doc(orderItemModel.medicineId)
+          .get();
+
+      if (existedMedicine.exists) {
+        var medicineModel = MedicineModel.fromJson(
+          existedMedicine.id,
+          existedMedicine.data(),
+        );
+
+        medicineModel.modifiedById = AppCubit.get(context).userModel!.uid!;
+        medicineModel.modifiedByName = AppCubit.get(context).userModel!.name;
+        medicineModel.modifiedOn = DateTime.now();
+        medicineModel.qty -= orderItemModel.qty;
+        medicineModel.soldAmount =
+            medicineModel.soldAmount! + orderItemModel.totalAmount;
+        medicineModel.soldQty = medicineModel.soldQty! + orderItemModel.qty;
+
+        await FirebaseFirestore.instance
+            .collection("medicines")
+            .doc(medicineModel.uid)
+            .update(medicineModel.toJson());
+
+        medicines
+            .where((element) => element.uid == orderItemModel.medicineId)
+            .first
+            .copyFrom(medicineModel);
+        emit(UpdateMedicineMedicineAfterSellState());
+      }
+    } on Exception catch (e) {
+      throw e;
+    }
+  }
+
   ///
   /// Get Medicines List
   ///
@@ -205,5 +247,9 @@ class MedicinesCubit extends Cubit<MedicinesStates> {
       print(error.toString());
       emit(ErrorGetMedicinesState(error.toString()));
     }
+  }
+
+  Future<List<MedicineModel>> getMedicinesByName(String? name) async {
+    return medicines.where((element) => element.medicineName == name).toList();
   }
 }

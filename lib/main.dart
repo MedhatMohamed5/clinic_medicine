@@ -9,6 +9,7 @@ import 'package:clinic_medicines/cubit/general/app_cubit.dart';
 import 'package:clinic_medicines/cubit/home/home_cubit.dart';
 import 'package:clinic_medicines/cubit/login/login_cubit.dart';
 import 'package:clinic_medicines/cubit/medicines/medicines_cubit.dart';
+import 'package:clinic_medicines/cubit/sell_medicine/sell_medicine_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CustomerCubit()..getCustomers(),
+        ),
+        BlocProvider(
+          create: (context) => SellMedicineCubit(),
         ),
       ],
       child: MaterialApp(

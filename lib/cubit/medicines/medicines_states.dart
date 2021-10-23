@@ -49,3 +49,5 @@ class UploadMedicineImageErrorState extends ErrorMedicinesState {
 }
 
 class MedicineImageRemoveState extends SuccessMedicinesState {}
+
+class UpdateMedicineMedicineAfterSellState extends SuccessMedicinesState {}
