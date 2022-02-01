@@ -5,7 +5,6 @@ import 'package:clinic_medicines/cubit/sell_medicine/sell_medicine_cubit.dart';
 import 'package:clinic_medicines/cubit/sell_medicine/sell_medicine_state.dart';
 import 'package:clinic_medicines/models/order_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SellMedicineConfirmScreen extends StatefulWidget {

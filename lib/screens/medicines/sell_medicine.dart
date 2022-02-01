@@ -9,7 +9,6 @@ import 'package:clinic_medicines/models/medicine_model.dart';
 import 'package:clinic_medicines/models/order_item_model.dart';
 import 'package:clinic_medicines/screens/medicines/sell_medicine_confirm.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

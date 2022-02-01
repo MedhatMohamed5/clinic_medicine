@@ -3,7 +3,6 @@ import 'package:clinic_medicines/screens/customers/add_customer.dart';
 import 'package:clinic_medicines/screens/medicines/add_medicine_stepper.dart';
 // import 'package:clinic_medicines/screens/home_sub_screen.dart';
 import 'package:clinic_medicines/screens/medicines/sell_medicine.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';

@@ -8,7 +8,6 @@ import 'package:clinic_medicines/cubit/medicines/medicines_cubit.dart';
 import 'package:clinic_medicines/cubit/medicines/medicines_states.dart';
 import 'package:clinic_medicines/models/medicine_model.dart';
 import 'package:clinic_medicines/models/user_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -216,13 +215,14 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
     );
   }
 
-  Widget _controlsBuilder(context, {onStepContinue, onStepCancel}) {
+  Widget _controlsBuilder(
+      BuildContext context, ControlsDetails controlsDetails) {
     return Row(
       children: [
         Expanded(
           child: ElevatedButton(
             child: Text(currentStep != 2 ? 'NEXT' : 'SAVE'),
-            onPressed: onStepContinue,
+            onPressed: controlsDetails.onStepContinue,
           ),
         ),
         if (currentStep != 0)
@@ -235,7 +235,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
                 Expanded(
                   child: ElevatedButton(
                     child: Text('PREVIOUS'),
-                    onPressed: onStepCancel,
+                    onPressed: controlsDetails.onStepCancel,
                   ),
                 ),
               ],
