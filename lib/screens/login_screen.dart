@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildContent(LoginCubit loginCubit) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Form(
         key: formKey,
         child: Column(
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(
-              height: 48,
+              height: 44,
             ),
             textInput(
               controller: emailController,
